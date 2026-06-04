@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block header_title %}<h1><i class="ph ph-graduation-cap"></i> Cyber Learning Hub</h1>{% endblock %}
+
+{% block content %}
+<div class="learning-controls glass-panel mb-4" style="padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; border-radius: 12px; border-left: 4px solid var(--neon-blue);">
+    <!-- Search Bar -->
+    <div class="search-box" style="flex: 1; min-width: 250px; position: relative;">
+        <i class="ph ph-magnifying-glass" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--neon-blue);"></i>
+        <input type="text" id="learning-search" placeholder="Search platforms..." class="cyber-input" style="width: 100%; padding-left: 40px; border-radius: 30px;">
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="filter-controls" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-outline filter-btn active" data-filter="all">All</button>
+        <button class="btn btn-outline filter-btn" data-filter="Beginner">Beginner</button>
+        <button class="btn btn-outline filter-btn" data-filter="Advanced">Advanced</button>
+        <button class="btn btn-outline filter-btn" data-filter="Web Security">Web Security</button>
+        <button class="btn btn-outline filter-btn" data-filter="Blue Team">Blue Team</button>
+    </div>
+</div>
+
+<div class="learning-grid" id="learning-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;">
+    
+    <!-- 1. HTB -->
+    <div class="learning-card glass-card" data-category="Advanced" data-name="Hack The Box">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>Hack The Box</h3>
+        <p class="desc">Advanced platform for real-world penetration testing labs and challenges.</p>
+        <div class="tag-box"><i class="ph ph-target"></i> Best For: Practical hacking & Kali Linux</div>
+        <a href="https://www.hackthebox.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 2. PortSwigger -->
+    <div class="learning-card glass-card" data-category="Web Security" data-name="PortSwigger Web Security Academy">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>PortSwigger Web Security Academy</h3>
+        <p class="desc">Free web security labs designed by the creators of Burp Suite.</p>
+        <div class="tag-box"><i class="ph ph-globe"></i> Best For: Web application security</div>
+        <a href="https://portswigger.net/web-security" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 3. picoCTF -->
+    <div class="learning-card glass-card" data-category="Beginner" data-name="picoCTF">
+        <h3>picoCTF</h3>
+        <p class="desc">Beginner-friendly gamified cybersecurity challenges to kickstart your journey.</p>
+        <div class="tag-box"><i class="ph ph-flag"></i> Best For: Beginners & CTF practice</div>
+        <a href="https://picoctf.org" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 4. OffSec -->
+    <div class="learning-card glass-card" data-category="Advanced" data-name="OffSec Proving Grounds">
+        <h3>OffSec Proving Grounds</h3>
+        <p class="desc">Exclusive vulnerable machines from Offensive Security, creators of Kali Linux.</p>
+        <div class="tag-box"><i class="ph ph-skull"></i> Best For: OSCP preparation</div>
+        <a href="https://www.offsec.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 5. PentesterLab -->
+    <div class="learning-card glass-card" data-category="Web Security" data-name="PentesterLab">
+        <h3>PentesterLab</h3>
+        <p class="desc">Step-by-step practical web penetration testing exercises mimicking real CVEs.</p>
+        <div class="tag-box"><i class="ph ph-bug"></i> Best For: Web hacking paths</div>
+        <a href="https://pentesterlab.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 6. CyberDefenders -->
+    <div class="learning-card glass-card" data-category="Blue Team" data-name="CyberDefenders">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>CyberDefenders</h3>
+        <p class="desc">Defensive blue team training platform with real, interactive threat scenarios.</p>
+        <div class="tag-box"><i class="ph ph-shield-check"></i> Best For: SOC & forensics</div>
+        <a href="https://cyberdefenders.org" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 7. VulnHub -->
+    <div class="learning-card glass-card" data-category="Advanced" data-name="VulnHub">
+        <h3>VulnHub</h3>
+        <p class="desc">Free collection of downloadable vulnerable machines for local offline practice.</p>
+        <div class="tag-box"><i class="ph ph-hard-drives"></i> Best For: Kali Linux offline labs</div>
+        <a href="https://www.vulnhub.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 8. BTLO -->
+    <div class="learning-card glass-card" data-category="Blue Team" data-name="Blue Team Labs Online (BTLO)">
+        <h3>Blue Team Labs Online (BTLO)</h3>
+        <p class="desc">Practical defensive cybersecurity labs emphasizing incident response.</p>
+        <div class="tag-box"><i class="ph ph-police-car"></i> Best For: Blue teaming</div>
+        <a href="https://blueteamlabs.online" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 9. SANS Cyber Aces -->
+    <div class="learning-card glass-card" data-category="Beginner" data-name="SANS Cyber Aces">
+        <h3>SANS Cyber Aces</h3>
+        <p class="desc">Free foundational cybersecurity training bridging operating systems and networks.</p>
+        <div class="tag-box"><i class="ph ph-books"></i> Best For: Networking & basics</div>
+        <a href="https://www.cyberaces.org" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- 10. RangeForce -->
+    <div class="learning-card glass-card" data-category="Blue Team" data-name="RangeForce">
+        <h3>RangeForce</h3>
+        <p class="desc">Enterprise-level situational security training platform focused on team metrics.</p>
+        <div class="tag-box"><i class="ph ph-buildings"></i> Best For: SOC training</div>
+        <a href="https://www.rangeforce.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+</div>
+
+<!-- CSS for Learning Cards integrated directly or left for style.css, but local styles keep it solid -->
+<style>
+.learning-card {
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    border: 1px solid rgba(102, 252, 241, 0.2);
+}
+.learning-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(102, 252, 241, 0.15);
+    border-color: var(--neon-blue);
+}
+.learning-card h3 { color: var(--neon-blue); margin-bottom: 0.5rem; }
+.learning-card .desc { color: #ccc; font-size: 0.9rem; margin-bottom: 1rem; flex-grow: 1; }
+.learning-card .tag-box {
+    background: rgba(102, 252, 241, 0.1);
+    color: var(--neon-blue);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.card-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #000;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    box-shadow: 0 4px 10px rgba(243, 156, 18, 0.4);
+}
+.filter-btn { border-radius: 20px; transition: 0.3s; padding: 5px 15px; }
+.filter-btn.active {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Cyber <span class="neon-text">AI Assistant</span></h1>{% endblock %}
+
+{% block content %}
+<style>
+    /* Styling for Gemini-like chat layout */
+    .typing-anim span {
+        animation: blink 1.4s infinite reverse;
+        margin: 0 1px;
+    }
+    .typing-anim span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-anim span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink {
+        0% { opacity: 0.2; }
+        20% { opacity: 1; }
+        100% { opacity: 0.2; }
+    }
+</style>
+
+<div class="ai-container" style="display: flex; gap: 20px; height: calc(100vh - 160px);">
+    
+    <!-- Sidebar History / Options -->
+    <div class="ai-sidebar glass-panel" style="width: 250px; display: flex; flex-direction: column; padding: 15px; border-radius: 8px;">
+        <h3 class="neon-text" style="font-size: 1.1rem; margin-bottom: 10px;"><i class="ph ph-clock-counter-clockwise"></i> Session History</h3>
+        <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">Chats are session-bound. Log is wiped on exit.</p>
+        
+        <div class="ai-history" id="ai-history-list" style="flex-grow: 1; overflow-y: auto;">
+            <!-- Simple empty state for now -->
+            <p style="color: #555; font-style: italic;">No active conversations.</p>
+        </div>
+
+        <div style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+            <button id="btn-camera-demo" class="btn btn-primary btn-block">
+                <i class="ph ph-camera"></i> Start Camera Vision
+            </button>
+            <div id="camera-container" style="display: none; margin-top: 10px; border: 1px dashed var(--neon-blue); border-radius: 8px; overflow: hidden; height: 120px;">
+                <video id="camera-preview" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+            </div>
+            <p style="font-size: 0.75rem; color: #888; margin-top: 10px; text-align: center;">Educational preview feature (Requires local permissions).</p>
+        </div>
+    </div>
+
+    <!-- Main Chat Window -->
+    <div class="ai-chat-window glass-card" style="flex-grow: 1; display: flex; flex-direction: column; padding: 0;">
+        
+        <div class="chat-messages" id="chat-messages" style="flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+            
+            <!-- AI Welcome Message -->
+            <div class="chat-bubble ai-bubble" style="align-self: flex-start; max-width: 85%; background: rgba(102, 252, 241, 0.1); border-left: 3px solid var(--neon-blue); padding: 15px; border-radius: 8px;">
+                <h4 style="margin-bottom: 5px; color: var(--neon-blue);"><i class="ph ph-robot"></i> Cyber AI</h4>
+                <p>Hello operator. I am synchronized with your local Ollama engine framework. I have knowledge across global cybersecurity sectors.</p>
+                <p style="margin-top: 8px; color: #888; font-size: 0.9rem;">What vectors can we explore today?</p>
+                <div class="quick-prompts mt-2" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                    <button class="btn btn-sm btn-icon prompt-btn" style="color: var(--neon-blue); border-color: var(--neon-blue);">Explain SQL Injection</button>
+                    <button class="btn btn-sm btn-icon prompt-btn" style="color: var(--neon-blue); border-color: var(--neon-blue);">Check Password Tips</button>
+                    <button class="btn btn-sm btn-icon prompt-btn" style="color: var(--neon-blue); border-color: var(--neon-blue);">What is Phishing?</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area" style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); border-radius: 0 0 12px 12px;">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-icon" id="btn-voice-input" title="Voice Dictation">
+                    <i class="ph ph-microphone"></i>
+                </button>
+                <input type="text" id="chat-input" class="cyber-input" style="flex-grow: 1; border-radius: 20px; padding: 10px 20px;" placeholder="Message Cyber AI..." autocomplete="off">
+                <button class="btn btn-primary" id="btn-send-chat" style="border-radius: 20px;">
+                    <i class="ph ph-paper-plane-right"></i> Send
+                </button>
+            </div>
+            <div id="voice-status" style="display: none; color: var(--warning); font-size: 0.8rem; margin-top: 5px; text-align: center;">Listening to your voice... Speak now.</div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

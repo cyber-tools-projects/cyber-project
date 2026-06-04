@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Network <span class="neon-text">Device Monitor</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card" style="max-width: 900px;">
+    <div class="tool-header border-left-info" style="padding-bottom: 1rem;">
+        <i class="ph ph-router" style="font-size: 3rem;"></i>
+        <h2>LAN Host Identification (Simulator)</h2>
+        <p>This panel simulates an active ARP network scan identifying connected devices on your subnet.</p>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: space-between; align-items: center;">
+        <div>
+            <button id="btn-net-scan" class="btn btn-primary"><i class="ph ph-broadcast"></i> Ping Sweep Subnet</button>
+        </div>
+        <div class="scan-status neon-text" id="net-scan-status" style="display: none;">
+            Scanning 192.168.1.0/24...
+        </div>
+    </div>
+    
+    <div class="device-grid mt-4" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;" id="device-grid">
+        <!-- JS inserts devices here -->
+        <div class="glass-card" style="padding: 1.5rem; text-align: center; grid-column: 1 / -1; color: gray;">
+            No network devices mapped. Initiate ping sweep.
+        </div>
+    </div>
+</div>
+{% endblock %}

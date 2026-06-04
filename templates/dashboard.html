@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Operator <span class="neon-text">Dashboard</span></h1>{% endblock %}
+
+{% block content %}
+<div class="dashboard-grid">
+    <!-- Quick Access Tool Cards -->
+    <div class="tools-grid">
+        <a href="{{ url_for('password_checker') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-password"></i></div>
+            <div class="tool-info">
+                <h3>Password Analyzer</h3>
+                <p>Test password strength against brute-force entropy.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('port_scanner') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-radar"></i></div>
+            <div class="tool-info">
+                <h3>Port Scanner</h3>
+                <p>Fast multi-threaded scanning to detect open services.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('file_encryption') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-file-lock"></i></div>
+            <div class="tool-info">
+                <h3>File Encryption</h3>
+                <p>AES-CBC standard encryption for secure file storage.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('keylogger_demo') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-keyboard"></i></div>
+            <div class="tool-info">
+                <h3>Keylogger Demo</h3>
+                <p>Educational interactive keystroke simulation tool.</p>
+            </div>
+        </a>
+        
+        <a href="#" class="tool-card glass-card" onclick="document.getElementById('toggle-cyber-ai').click(); return false;" style="border: 1px solid rgba(102, 252, 241, 0.4);">
+            <div class="tool-icon"><i class="ph ph-brain" style="color: var(--neon-blue);"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text" style="text-shadow: 0 0 5px var(--neon-blue);">Cyber AI Assistant</h3>
+                <p>Global floating overlay for real-time interaction.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('stego') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-image"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Image Stego</h3>
+                <p>Conceal secret payloads inside standard carrier images.</p>
+            </div>
+        </a>
+        
+        <a href="{{ url_for('phishing') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-fish-simple"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Phishing Detector</h3>
+                <p>Analyze links against heuristic signatures.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('vuln_scanner') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-shield-warning"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Vuln Scanner [Demo]</h3>
+                <p>Check basic SQLi and XSS vulnerabilities vectors.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('sniffer') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-activity"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Packet Sniffer</h3>
+                <p>Simulate monitoring local network HTTP/HTTPS traffic.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('ducky') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-lightning"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Rubber Ducky Sim</h3>
+                <p>Execute and visualize DuckyScript payload macros.</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('device_monitor') }}" class="tool-card glass-card">
+            <div class="tool-icon"><i class="ph ph-router"></i></div>
+            <div class="tool-info">
+                <h3 class="neon-text">Net Device Monitor</h3>
+                <p>Visualize simulated subnet devices layout.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Right Sidebar Activity Log -->
+    <div class="activity-panel glass-panel">
+        <div class="panel-header">
+            <h3><i class="ph ph-activity"></i> Recent Activity Log</h3>
+        </div>
+        <ul class="activity-list">
+            {% for log in logs %}
+            <li class="activity-item">
+                <div class="activity-time">{{ log.timestamp }}</div>
+                <div class="activity-action">{{ log.action }}</div>
+                <div class="activity-details">{{ log.details }}</div>
+            </li>
+            {% else %}
+            <li class="activity-empty">No trace data found. System is clean.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

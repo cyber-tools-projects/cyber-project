@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Vulnerability <span class="neon-text">Scanner</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header alert alert-warning" style="background: rgba(255,165,0,0.1); border-left: 4px solid #ffa500; opacity: 1;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="ph ph-warning-circle" style="color: #ffa500; font-size: 2rem;"></i>
+            <div>
+                <h2>Simulation Mode Only</h2>
+                <p>This tool mocks a comprehensive web-application vulnerability scan for educational visualization. It does not exploit any real systems.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="scanner-form mt-4">
+        <div class="input-group">
+            <label>Target Web Application URL</label>
+            <input type="text" id="vuln-url" class="cyber-input" value="https://example.com" placeholder="https://...">
+        </div>
+        
+        <div class="scan-options" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <label style="color: #fff; cursor: pointer;"><input type="checkbox" checked> SQL Injection (SQLi)</label>
+            <label style="color: #fff; cursor: pointer;"><input type="checkbox" checked> Cross-site Scripting (XSS)</label>
+            <label style="color: #fff; cursor: pointer;"><input type="checkbox" checked> Directory Traversal</label>
+        </div>
+        
+        <button id="btn-vuln-scan" class="btn btn-danger btn-block">
+            <i class="ph ph-bug"></i> Run Simulated Security Audit
+        </button>
+    </div>
+    
+    <div class="terminal-window mt-4" id="vuln-terminal" style="display: none;">
+        <div class="terminal-header">
+            <span>Audit Logs</span>
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="terminal-body" id="vuln-output">
+            <!-- Simulated Logs -->
+        </div>
+    </div>
+</div>
+{% endblock %}

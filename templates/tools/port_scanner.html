@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Network <span class="neon-text">Scanner</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header">
+        <i class="ph ph-radar"></i>
+        <h2>Target Service Reconnaissance</h2>
+        <p>Scanning ports for potential vulnerabilities. (Educational Use Only)</p>
+    </div>
+    
+    <div class="scanner-form">
+        <div class="scan-inputs">
+            <div class="input-group">
+                <label>Target IP/Domain</label>
+                <input type="text" id="scan-target" class="cyber-input" value="127.0.0.1">
+            </div>
+            <div class="port-range">
+                <div class="input-group">
+                    <label>Start Port</label>
+                    <input type="number" id="scan-start" class="cyber-input" value="20">
+                </div>
+                <div class="input-group">
+                    <label>End Port</label>
+                    <input type="number" id="scan-end" class="cyber-input" value="1000">
+                </div>
+            </div>
+        </div>
+        <button id="btn-scan" class="btn btn-primary">
+            <i class="ph ph-scan"></i> Initiate Scan Sequence
+        </button>
+    </div>
+    
+    <div class="terminal-window" id="scan-terminal" style="display: none;">
+        <div class="terminal-header">
+            <span>Scan Output</span>
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="terminal-body" id="scan-results">
+            <!-- Results appended by JS -->
+        </div>
+    </div>
+</div>
+{% endblock %}

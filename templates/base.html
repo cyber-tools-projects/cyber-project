@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard Toolkit</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=2) }}">
+    <!-- Phosphor Icons for modern UI -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Flash Messages (Alerts) -->
+    <div class="alerts-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    {% if session.get('user_id') %}
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <h2>Cyber<span class="neon-text">Guard</span></h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="{{ url_for('dashboard') }}"><i class="ph ph-squares-four"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('learning_hub') }}"><i class="ph ph-graduation-cap"></i> Learning Hub</a></li>
+                <li><a href="{{ url_for('resource_hub') }}"><i class="ph ph-books"></i> Cyber Resource Hub</a></li>
+                <li style="margin-top: 10px; margin-left: 15px; font-size: 0.8rem; color: #888; text-transform: uppercase;">Basic Tools</li>
+                <li><a href="{{ url_for('password_checker') }}"><i class="ph ph-password"></i> Password Strength</a></li>
+                <li><a href="{{ url_for('port_scanner') }}"><i class="ph ph-radar"></i> Port Scanner</a></li>
+                <li><a href="{{ url_for('file_encryption') }}"><i class="ph ph-file-lock"></i> File Encryption</a></li>
+                <li><a href="{{ url_for('keylogger_demo') }}"><i class="ph ph-keyboard"></i> Keylogger Demo</a></li>
+                
+                <li style="margin-top: 10px; margin-left: 15px; font-size: 0.8rem; color: #66fcf1; text-transform: uppercase;">Advanced Tools</li>
+                <li><a href="#" id="toggle-cyber-ai"><i class="ph ph-brain"></i> Cyber AI (Global)</a></li>
+                <li><a href="{{ url_for('stego') }}"><i class="ph ph-image"></i> Steganography</a></li>
+                <li><a href="{{ url_for('phishing') }}"><i class="ph ph-fish-simple"></i> Phishing Detector</a></li>
+                <li><a href="{{ url_for('vuln_scanner') }}"><i class="ph ph-shield-warning"></i> Vuln Scanner</a></li>
+                <li><a href="{{ url_for('sniffer') }}"><i class="ph ph-activity"></i> Packet Sniffer</a></li>
+                <li><a href="{{ url_for('ducky') }}"><i class="ph ph-lightning"></i> Ducky Simulator</a></li>
+                <li><a href="{{ url_for('device_monitor') }}"><i class="ph ph-router"></i> Device Monitor</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <i class="ph ph-user-circle"></i>
+                    <span>{{ session.get('username') }}</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn-logout"><i class="ph ph-sign-out"></i> Logout</a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header glass-panel">
+                <div class="header-title">
+                    {% block header_title %}<h1>Dashboard</h1>{% endblock %}
+                </div>
+                <div class="header-actions">
+                    <!-- Additional top bar actions can go here -->
+                </div>
+            </header>
+            
+            <div class="content-wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    {% else %}
+        <!-- Auth Layout -->
+        <div class="auth-layout">
+            {% block auth_content %}{% endblock %}
+        </div>
+    {% endif %}
+
+    <!-- GLOBAL FLOATING AI PANEL -->
+    <div id="ai-floating-panel" style="position: fixed; right: 0; top: 0; bottom: 0; width: 400px; z-index: 10000; display: flex; flex-direction: column; background: rgba(10, 15, 25, 0.85); backdrop-filter: blur(10px); border-left: 1px solid var(--neon-blue); box-shadow: -5px 0 25px rgba(102, 252, 241, 0.2); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);">
+        
+        <!-- RESIZER - Left Edge -->
+        <div id="ai-resizer" style="position: absolute; left: -5px; top: 0; bottom: 0; width: 10px; cursor: col-resize; z-index: 10001; background: transparent;"></div>
+        
+        <!-- HEADER (Draggable) -->
+        <div id="ai-header" style="height: 55px; background: rgba(102, 252, 241, 0.1); border-bottom: 1px solid var(--neon-blue); display: flex; justify-content: space-between; align-items: center; padding: 0 15px; cursor: move; user-select: none;">
+            <div style="color: var(--neon-blue); font-weight: bold; font-family: 'Orbitron', sans-serif;">
+                <i class="ph ph-robot"></i> Cyber AI
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button id="ai-minimize" class="btn btn-icon btn-sm" style="color: #fff; background: transparent; border: none; font-size: 1.2rem;" title="Minimize"><i class="ph ph-minus"></i></button>
+                <button id="ai-close" class="btn btn-icon btn-sm" style="color: #ff4757; background: transparent; border: none; font-size: 1.2rem;" title="Close"><i class="ph ph-x"></i></button>
+            </div>
+        </div>
+
+        <!-- CAMERA PREVIEW (Optional) -->
+        <div id="camera-container" style="display: none; padding: 10px; border-bottom: 1px solid rgba(102,252,241,0.2);">
+            <div style="position: relative; width: 100%; height: 120px; border: 1px dashed var(--neon-blue); border-radius: 8px; overflow: hidden;">
+                <video id="camera-preview" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                <button id="btn-camera-close" class="btn btn-sm" style="position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.5);"><i class="ph ph-x"></i></button>
+            </div>
+        </div>
+
+        <!-- CHAT MESSAGES -->
+        <div id="ai-chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem;">
+            <!-- Initial AI Greeting -->
+            <div class="ai-bubble" style="margin-right: auto; max-width: 85%; background: rgba(102, 252, 241, 0.1); border-left: 3px solid var(--neon-blue); padding: 12px; border-radius: 8px 8px 8px 0; color: #fff;">
+                <div style="color: var(--neon-blue); font-size: 0.8rem; margin-bottom: 4px; font-weight: bold;"><i class="ph ph-robot"></i> Cyber AI</div>
+                Educational AI Assistant activated. How can I assist your security audit today?
+                
+                <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px;">
+                    <button class="ai-quick-btn" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); font-size: 0.75rem; padding: 4px 8px; border-radius: 12px; cursor: pointer; transition: 0.2s;">Explain XSS</button>
+                    <button class="ai-quick-btn" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); font-size: 0.75rem; padding: 4px 8px; border-radius: 12px; cursor: pointer; transition: 0.2s;">Check phishing link</button>
+                    <button class="ai-quick-btn" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); font-size: 0.75rem; padding: 4px 8px; border-radius: 12px; cursor: pointer; transition: 0.2s;">Password tips</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- INPUT SECTION -->
+        <div style="padding: 15px; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(102,252,241,0.2);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <button id="ai-clear-chat" class="btn btn-sm" style="background: transparent; color: #888; border: none; font-size: 0.8rem; cursor: pointer;"><i class="ph ph-trash"></i> Clear Chat</button>
+                <div style="display: flex; gap: 8px;">
+                    <button id="ai-btn-camera" class="btn btn-icon btn-sm" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); border-radius: 50%; width: 30px; height: 30px;" title="Camera Capture"><i class="ph ph-camera"></i></button>
+                    <button id="ai-btn-mic" class="btn btn-icon btn-sm" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); border-radius: 50%; width: 30px; height: 30px;" title="Voice Dictation"><i class="ph ph-microphone"></i></button>
+                </div>
+            </div>
+            <div id="ai-voice-status" style="display: none; color: var(--warning); font-size: 0.75rem; margin-bottom: 5px;"><span class="neon-text">Listening...</span> Speak now</div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <input type="text" id="ai-chat-input" placeholder="Ask anything about cybersecurity..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(102,252,241,0.3); color: #fff; padding: 10px 15px; border-radius: 20px; outline: none; font-family: inherit;">
+                <button id="ai-btn-send" style="background: var(--neon-blue); color: #000; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer;"><i class="ph ph-paper-plane-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- END AI PANEL -->
+
+    <script src="{{ url_for('static', filename='js/main.js', v=2) }}"></script>
+    <script>
+        // Auto-hide alerts after 5 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(alert => {
+                alert.style.opacity = '0';
+                setTimeout(() => alert.style.display = 'none', 300);
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block auth_content %}
+<div class="auth-container glass-card">
+    <div class="auth-box">
+        <div class="auth-logo">
+            <h2>Cyber<span class="neon-text">Guard</span></h2>
+            <p>Advanced Security Toolkit</p>
+        </div>
+
+        {% if action == 'login' %}
+            <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-user"></i>
+                        <input type="text" name="username" required autocomplete="off" placeholder="Enter your username">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-lock-key"></i>
+                        <input type="password" name="password" required placeholder="Enter your password">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Access System</span>
+                    <i class="ph ph-arrow-right"></i>
+                </button>
+                <div class="auth-switch">
+                    New operator? <a href="{{ url_for('signup') }}" class="neon-link">Request Access</a>
+                </div>
+            </form>
+        {% else %}
+            <form method="POST" action="{{ url_for('signup') }}" class="auth-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-user"></i>
+                        <input type="text" name="username" required autocomplete="off" placeholder="Choose a username">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-envelope-simple"></i>
+                        <input type="email" name="email" required autocomplete="off" placeholder="Enter secure email">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-lock-key"></i>
+                        <input type="password" name="password" required placeholder="Create strong password">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Initialize Account</span>
+                    <i class="ph ph-shield-check"></i>
+                </button>
+                <div class="auth-switch">
+                    Already an operator? <a href="{{ url_for('login') }}" class="neon-link">Login Here</a>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

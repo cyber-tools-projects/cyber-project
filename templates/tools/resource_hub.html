@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block header_title %}<h1><i class="ph ph-books"></i> Cyber Resource Hub</h1>{% endblock %}
+
+{% block content %}
+<div class="resource-controls glass-panel mb-4" style="padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; border-radius: 12px; border-left: 4px solid var(--neon-blue);">
+    <!-- Search Bar -->
+    <div class="search-box" style="flex: 1; min-width: 250px; position: relative;">
+        <i class="ph ph-magnifying-glass" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--neon-blue);"></i>
+        <input type="text" id="resource-search" placeholder="Search platforms and Kali tools..." class="cyber-input" style="width: 100%; padding-left: 40px; border-radius: 30px;">
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="filter-controls" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-outline resource-btn active" data-filter="all">All</button>
+        <button class="btn btn-outline resource-btn" data-filter="Bug Bounty">Bug Bounty</button>
+        <button class="btn btn-outline resource-btn" data-filter="Ethical Hacking">Ethical Hacking</button>
+        <button class="btn btn-outline resource-btn" data-filter="Blue Team">Blue Team</button>
+    </div>
+</div>
+
+<h2 class="neon-text mb-3 mt-4" style="font-size: 1.5rem;"><i class="ph ph-globe"></i> Top Industry Platforms</h2>
+
+<div class="resource-grid" id="resource-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 2rem;">
+    <!-- CATEGORY: BUG BOUNTY -->
+    <div class="resource-card glass-card" data-category="Bug Bounty" data-name="HackerOne">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>HackerOne</h3>
+        <p class="desc">World's largest bug bounty platform with enterprise and government programs.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Beginner to Advanced</div>
+        <a href="https://www.hackerone.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Bug Bounty" data-name="Bugcrowd">
+        <h3>Bugcrowd</h3>
+        <p class="desc">Fast triage and massive scale covering diverse public/private security programs.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Intermediate</div>
+        <a href="https://www.bugcrowd.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Bug Bounty" data-name="Intigriti">
+        <h3>Intigriti</h3>
+        <p class="desc">Beginner-friendly European bug bounty platform with frequent community pushes.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Beginner</div>
+        <a href="https://www.intigriti.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- CATEGORY: ETHICAL HACKING -->
+    <div class="resource-card glass-card" data-category="Ethical Hacking" data-name="Hack The Box">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>Hack The Box</h3>
+        <p class="desc">Real-world pentesting labs, cyber battlegrounds, and CTF challenges.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Intermediate to Advanced</div>
+        <a href="https://www.hackthebox.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Ethical Hacking" data-name="TryHackMe">
+        <div class="card-badge">⭐ Recommended</div>
+        <h3>TryHackMe</h3>
+        <p class="desc">Guided, highly structured learning paths offering interactive hands-on browser labs.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Beginner</div>
+        <a href="https://tryhackme.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Ethical Hacking" data-name="PortSwigger Web Security Academy">
+        <h3>PortSwigger Web Security</h3>
+        <p class="desc">The undisputed best free platform designed by the Burp Suite creators for web security.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Beginner to Advanced</div>
+        <a href="https://portswigger.net/web-security" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <!-- CATEGORY: BLUE TEAM -->
+    <div class="resource-card glass-card" data-category="Blue Team" data-name="CyberDefenders">
+        <h3>CyberDefenders</h3>
+        <p class="desc">Premium blue team labs focusing on digital forensics, SOC ops, and threat hunting.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Intermediate</div>
+        <a href="https://cyberdefenders.org" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Blue Team" data-name="picoCTF">
+        <h3>picoCTF</h3>
+        <p class="desc">Extremely interactive gamified challenges centering on crypto and network tracking.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Beginner</div>
+        <a href="https://picoctf.org" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+
+    <div class="resource-card glass-card" data-category="Blue Team" data-name="OffSec Proving Grounds">
+        <h3>OffSec Proving Grounds</h3>
+        <p class="desc">Hardened, OSCP-level penetration testing labs designed for true expertise growth.</p>
+        <div class="level-box"><i class="ph ph-trend-up"></i> Level: Advanced</div>
+        <a href="https://www.offsec.com" target="_blank" class="btn btn-primary btn-block"><i class="ph ph-arrow-square-out"></i> Visit Platform</a>
+    </div>
+</div>
+
+<h2 class="neon-text mb-3" style="font-size: 1.5rem;"><i class="ph ph-terminal"></i> Kali Linux Essential Tools</h2>
+<div class="glass-panel" style="padding: 1rem; border-radius: 12px; overflow-x: auto; border: 1px solid rgba(102, 252, 241, 0.2);">
+    <table class="cyber-table" style="width: 100%; border-collapse: collapse; color: #fff;">
+        <thead>
+            <tr style="border-bottom: 2px solid var(--neon-blue); text-align: left; background: rgba(0,0,0,0.4);">
+                <th style="padding: 15px;">Category</th>
+                <th style="padding: 15px; color: var(--neon-blue);">Tool Name</th>
+                <th style="padding: 15px;">Purpose</th>
+            </tr>
+        </thead>
+        <tbody id="tools-table-body">
+            <tr class="tool-row" data-name="Nmap">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Reconnaissance</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Nmap</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Network scanning and port discovery</td>
+            </tr>
+            <tr class="tool-row" data-name="Burp Suite">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Web Hacking</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Burp Suite</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Intercept and modify web traffic</td>
+            </tr>
+            <tr class="tool-row" data-name="Metasploit">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Exploitation</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Metasploit</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Exploit framework</td>
+            </tr>
+            <tr class="tool-row" data-name="Wireshark">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Network Analysis</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Wireshark</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Packet analysis</td>
+            </tr>
+            <tr class="tool-row" data-name="Hashcat">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Password Attacks</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Hashcat</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Password cracking</td>
+            </tr>
+            <tr class="tool-row" data-name="SQLmap">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Database Hacking</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">SQLmap</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">SQL injection automation</td>
+            </tr>
+            <tr class="tool-row" data-name="Aircrack-ng">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Wireless Security</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Aircrack-ng</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Wi-Fi security testing</td>
+            </tr>
+            <tr class="tool-row" data-name="OpenVAS">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Vulnerability Scanning</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">OpenVAS</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Network vulnerability scanner</td>
+            </tr>
+            <tr class="tool-row" data-name="BloodHound">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">AD Hacking</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">BloodHound</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Active Directory attack paths</td>
+            </tr>
+            <tr class="tool-row" data-name="Mimikatz">
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">Post Exploitation</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: #fff;">Mimikatz</td>
+                <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc;">Extract credentials from memory</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+.resource-card {
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    border: 1px solid rgba(102, 252, 241, 0.2);
+}
+.resource-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(102, 252, 241, 0.2);
+    border-color: var(--neon-blue);
+}
+.resource-card h3 { color: var(--neon-blue); margin-bottom: 0.5rem; }
+.resource-card .desc { color: #ccc; font-size: 0.95rem; margin-bottom: 1rem; flex-grow: 1; line-height: 1.4; }
+.resource-card .level-box {
+    background: rgba(102, 252, 241, 0.1);
+    color: var(--neon-blue);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    border-left: 2px solid var(--neon-blue);
+}
+.card-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #000;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    box-shadow: 0 4px 10px rgba(243, 156, 18, 0.4);
+}
+.resource-btn { border-radius: 20px; transition: 0.3s; padding: 5px 15px; }
+.resource-btn.active {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 15px rgba(102,252,241,0.5);
+    border-color: var(--neon-blue);
+}
+.cyber-table tr { transition: background 0.3s ease; }
+.cyber-table tbody tr:hover { background: rgba(102, 252, 241, 0.05); }
+</style>
+{% endblock %}

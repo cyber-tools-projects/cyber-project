@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Cipher <span class="neon-text">Vault</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header">
+        <i class="ph ph-file-lock"></i>
+        <h2>AES-CBC File Cryptography</h2>
+        <p>Secure payload transmission by encrypting or decrypting local files.</p>
+    </div>
+    
+    <div class="crypto-tabs">
+        <button class="tab-btn active" onclick="switchCryptoTab('encrypt')" type="button">Encrypt Payload</button>
+        <button class="tab-btn" onclick="switchCryptoTab('decrypt')" type="button">Decrypt Payload</button>
+    </div>
+    
+    <!-- Encrypt Form -->
+    <div id="encrypt-section" class="crypto-panel">
+        <form action="{{ url_for('api_encrypt') }}" method="POST" enctype="multipart/form-data" class="crypto-form">
+            <div class="file-drop-area" onclick="document.getElementById('enc-file').click()">
+                <i class="ph ph-upload-simple"></i>
+                <span id="enc-filename">Select a file to encrypt...</span>
+                <input type="file" id="enc-file" name="file" required style="display: none;" onchange="document.getElementById('enc-filename').innerText = this.files[0].name">
+            </div>
+            <div class="input-group">
+                <label>Secret Key (Password)</label>
+                <input type="password" name="password" class="cyber-input" required placeholder="Enter strong cipher key">
+            </div>
+            <button type="submit" class="btn btn-danger btn-upload">
+                <i class="ph ph-lock"></i> Engage Encryption Algorithm
+            </button>
+        </form>
+    </div>
+
+    <!-- Decrypt Form -->
+    <div id="decrypt-section" class="crypto-panel" style="display: none;">
+        <form action="{{ url_for('api_decrypt') }}" method="POST" enctype="multipart/form-data" class="crypto-form">
+            <div class="file-drop-area" onclick="document.getElementById('dec-file').click()">
+                <i class="ph ph-download-simple"></i>
+                <span id="dec-filename">Select .enc file to decrypt...</span>
+                <input type="file" id="dec-file" name="file" required style="display: none;" onchange="document.getElementById('dec-filename').innerText = this.files[0].name">
+            </div>
+            <div class="input-group">
+                <label>Secret Key (Password)</label>
+                <input type="password" name="password" class="cyber-input" required placeholder="Enter cipher key for decryption">
+            </div>
+            <button type="submit" class="btn btn-success btn-upload">
+                <i class="ph ph-lock-open"></i> Execute Decryption Protocol
+            </button>
+        </form>
+    </div>
+</div>
+<script>
+    function switchCryptoTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        if(tab === 'encrypt') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.getElementById('encrypt-section').style.display = 'block';
+            document.getElementById('decrypt-section').style.display = 'none';
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.getElementById('encrypt-section').style.display = 'none';
+            document.getElementById('decrypt-section').style.display = 'block';
+        }
+    }
+</script>
+{% endblock %}

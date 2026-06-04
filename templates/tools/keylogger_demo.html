@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Keylogger <span class="neon-text">Demonstration</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header alert alert-warning" style="background: rgba(255,165,0,0.1); border-left: 4px solid #ffa500; opacity: 1;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="ph ph-warning-circle" style="color: #ffa500; font-size: 2rem;"></i>
+            <div>
+                <h2>Educational Only</h2>
+                <p>This simulates keylogging strictly inside the input box below. System-wide keys are NOT intercepted.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="keylogger-demo-area">
+        <div class="input-group">
+            <label>Type in the trap area:</label>
+            <textarea id="kl-trap" class="cyber-input" rows="3" placeholder="Begin typing here to simulate interception..."></textarea>
+        </div>
+        
+        <div class="terminal-window mt-4">
+            <div class="terminal-header">
+                <span>Intercepted Output Logs</span>
+                <button id="kl-clear" class="btn btn-sm btn-icon"><i class="ph ph-trash"></i></button>
+            </div>
+            <div class="terminal-body" id="kl-logs">
+                <div class="log-line">> Process started. Awaiting keystrokes...</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

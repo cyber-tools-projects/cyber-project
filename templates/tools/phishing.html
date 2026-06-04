@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>Phishing <span class="neon-text">Detector</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header">
+        <i class="ph ph-fish-simple"></i>
+        <h2>URL Malicious Intent Analyzer</h2>
+        <p>Uses heuristic rule-based logic to detect suspicious domain structures commonly found in phishing links.</p>
+    </div>
+    
+    <div class="scanner-form">
+        <div class="input-group">
+            <label>Suspicious URL target</label>
+            <input type="text" id="phish-url" class="cyber-input" placeholder="e.g. http://secure-update.paypal.com-login-1209.info">
+        </div>
+        <button id="btn-phish-scan" class="btn btn-primary" type="button">
+            <i class="ph ph-shield-warning"></i> Analyze URL
+        </button>
+    </div>
+    
+    <!-- Results Window -->
+    <div class="terminal-window mt-4" id="phish-results" style="display: none;">
+        <div class="terminal-header">Analysis Results</div>
+        <div class="terminal-body" id="phish-output">
+            <!-- JS inserts verdict -->
+        </div>
+    </div>
+</div>
+{% endblock %}

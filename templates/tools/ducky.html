@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block header_title %}<h1>USB Rubber <span class="neon-text">Ducky Sim</span></h1>{% endblock %}
+
+{% block content %}
+<div class="tool-container glass-card">
+    <div class="tool-header alert alert-warning" style="background: rgba(255,165,0,0.1); border-left: 4px solid #ffa500; opacity: 1;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="ph ph-warning-circle" style="color: #ffa500; font-size: 2rem;"></i>
+            <div>
+                <h2>Educational Payload Simulator</h2>
+                <p>This tool evaluates Rubber Ducky payload scripts (DuckyScript). It visually simulates execution but does NOT fire real keystrokes onto your host machine.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ducky-area mt-4">
+        <div class="input-group">
+            <label>DuckyScript Payload <span style="float: right; cursor: pointer;" class="neon-text" id="ducky-load-example">Load Example</span></label>
+            <textarea id="ducky-script" class="cyber-input" rows="8" placeholder="REM Example Payload
+DELAY 1000
+GUI r
+DELAY 200
+STRING cmd
+ENTER
+DELAY 500
+STRING ipconfig
+ENTER"></textarea>
+        </div>
+        
+        <button id="btn-ducky-run" class="btn btn-danger btn-block mt-4">
+            <i class="ph ph-lightning"></i> Simulate Payload Execution
+        </button>
+        
+        <div class="terminal-window mt-4" id="ducky-terminal" style="display: none;">
+            <div class="terminal-header">
+                <span>Ducky Execution Sandbox</span>
+                <div class="terminal-dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="terminal-body" id="ducky-output">
+                <!-- Executed Steps Appended Here -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
